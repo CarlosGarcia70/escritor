@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "793789247811",
+    "firebase_url": "https://escritor-6ba90.firebaseio.com",
+    "project_id": "escritor-6ba90",
+    "storage_bucket": "escritor-6ba90.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:793789247811:android:3aabdedf71c345260ebff6",
+        "android_client_info": {
+          "package_name": "br.com.garcia.escritor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "793789247811-vga5vnlpndd2h2dvqvrknpelnnd21ot3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.garcia.escritor",
+            "certificate_hash": "8e0e12dac8cb565c0b53152c2264b59803e2527b"
+          }
+        },
+        {
+          "client_id": "793789247811-pb45qpmj36ukeqls2vubn37cqtsoabc2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6VltpAYCYR3TYnQlI89_95izMGb6DHMY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "793789247811-pb45qpmj36ukeqls2vubn37cqtsoabc2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
