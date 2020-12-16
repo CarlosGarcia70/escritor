@@ -1,46 +1,65 @@
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'auth_service.dart';
+import 'package:escritor/data/models/model_ideia.dart';
 
 class DatabaseService extends GetxService {
 
   final _authService = Get.put<AuthService>(AuthService());
   CollectionReference ideias = FirebaseFirestore.instance.collection('ideias');
 
-  Future<List<Map>> getIdeas() {
-    List<Map> lista = List<Map>();
+  Future<List<ModelIdeia>> getIdeias() {
+    List<ModelIdeia> _lista = List<ModelIdeia>();
     return ideias
         .where('email', isEqualTo: _authService.user.email)
         .get()
         .then((QuerySnapshot snapshot) {
-      snapshot.docs.forEach((doc) {
-        lista.add({'texto' : doc.data()['texto'],'Id' : doc.id});
-      });
-      return lista;
+          snapshot.docs.forEach((doc) {
+            Map _mapa = {
+              'Id' : doc.id,
+              'email' : doc.data()['email'],
+              'texto' : doc.data()['texto'],
+              'fase' : doc.data()['fase'],
+              'unEfeito' : doc.data()['unEfeito'],
+              'observacoes' : doc.data()['observacoes']
+            };
+            _lista.add(ModelIdeia.fromMap(_authService, _mapa));
+          });
+          return _lista;
     });
   }
 
-  Future<void> saveIdeia(String ideia) {
-    String _email = _authService.user.email;
-
+  Future<void> saveIdeia(ModelIdeia ideia) {
     return ideias
         .add(
-        {'email': _email,
-          'texto': ideia
+        {'email': ideia.email,
+          'texto': ideia.texto,
+          'fase' : ideia.fase,
+          'unEfeito' : ideia.unEfeito,
+          'observacoes' : ideia.observacoes
         }
     ).then((value) => print('Ideia gravada'))
         .catchError((error) => print('Falha ao gravar ideia: $error'));
   }
 
-  Future<void> updateIdeia(String id, String ideia) {
+  Future<void> updateIdeia(ModelIdeia ideia) {
     return ideias
-        .doc(id)
-        .update({'texto': ideia})
+        .doc(ideia.Id)
+        .update(
+          {
+            'email': ideia.email,
+            'texto': ideia.texto,
+            'fase' : ideia.fase,
+            'unEfeito' : ideia.unEfeito,
+            'observacoes' : ideia.observacoes
+          }
+        )
         .then((value) => print('Ideia alterada'))
         .catchError((error) => print('Falha na alteração da ideia: $error'));
   }
 
-  Future<void> deleteIdeia(String Id) {
+
+ Future<void> deleteIdeia(String Id) {
     return ideias
         .doc(Id)
         .delete()

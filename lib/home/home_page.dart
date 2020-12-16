@@ -1,5 +1,5 @@
+import 'package:escritor/data/models/model_ideia.dart';
 import 'package:escritor/home/home_widgets.dart';
-import 'package:escritor/ideias/new_ideia_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
           padding: EdgeInsets.all(10.0),
           child: GetBuilder<HomeController>(
             builder: (_) {
-              return FutureBuilder<List<Map>>(
+              return FutureBuilder<List<ModelIdeia>>(
                 future: controller.listaIdeias(),
                 builder: (context, snapshot) {
                   switch(snapshot.connectionState) {

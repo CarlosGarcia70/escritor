@@ -1,5 +1,5 @@
-import 'package:escritor/home/home_widgets.dart';
-import 'package:escritor/home/home_controller.dart';
+import 'package:escritor/data/models/model_ideia.dart';
+import 'package:escritor/data/providers/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'ideias_controller.dart';
@@ -7,6 +7,8 @@ import 'ideias_controller.dart';
 class NewIdeia extends StatelessWidget {
 
   final controller = Get.put<IdeiasController>(IdeiasController());
+  final auth = Get.find<AuthService>();
+
   TextEditingController texto = TextEditingController();
 
   @override
@@ -33,6 +35,9 @@ class NewIdeia extends StatelessWidget {
   }
 
   void _salvar() {
-    controller.saveIdeia(texto.text);
+    ModelIdeia ideia = ModelIdeia(auth);
+    ideia.fase = 1;
+    ideia.texto = texto.text;
+    controller.saveIdeia(ideia);
   }
 }

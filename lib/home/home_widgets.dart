@@ -1,12 +1,10 @@
+import 'package:escritor/data/models/model_ideia.dart';
 import 'package:escritor/ideias/edit_ideia_page.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter/material.dart';
-import 'home_controller.dart';
 import 'package:get/get.dart';
 
-Widget ListaIdeias(List<Map> lista) {
-
-  final controller = Get.find<HomeController>();
+Widget ListaIdeias(List<ModelIdeia> lista) {
 
   return StaggeredGridView.countBuilder(
       crossAxisCount: 4,
@@ -17,11 +15,11 @@ Widget ListaIdeias(List<Map> lista) {
         child: InkWell(
           splashColor: Colors.lime[900],
           onTap: () {
-            Get.to(EditIdeia(lista[index]['texto'], lista[index]['Id']));
+            Get.to(EditIdeia(lista[index]));
           },
           child: Padding(
               padding: EdgeInsets.all(10.0),
-              child: Text('${lista[index]['texto']}')
+              child: Text('${lista[index].texto}')
           ),
         )
       ),

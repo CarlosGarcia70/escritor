@@ -8,7 +8,7 @@ class HomeBinding extends Bindings {
 
   @override
   void dependencies() {
-    Get.put<HomeController>(HomeController());
+    Get.put<HomeController>(HomeController(), permanent: true);
     Get.put<AuthService>(AuthService());
     Get.put<DatabaseService>(DatabaseService());
   }
